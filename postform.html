@@ -1,0 +1,470 @@
+<html lang="en">
+    <head>
+        <title>OFCS Professional Reimbursement Form</title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+        <style>
+            .card-panel {
+                border-radius: 10px;
+            }
+            .header {
+                margin-left: -25px;
+                margin-right: -25px;
+                margin-top: -25px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                padding: 0px 30px;
+            }
+            .myForm {
+                padding: 15px;
+            }
+            .radbut {
+                display: inline;
+            }
+            .row .col{
+                padding: 0px !important;
+                margin-bottom: 0px !important;
+                margin-top: 0px !important;
+            }
+            #subDays {
+                margin-top: -10px;
+            }
+            #subDaysLabel {
+                margin-top: -5px;
+            }
+            #costs {
+                margin-bottom: 20px;
+            }
+            div.error .select-wrapper label.invalid{
+                color: red;
+                margin-top: -15px;
+                padding: 0;
+                font-size: 0.9em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="card-panel z-depth-5">
+                <header class="header indigo darken-3 white-text">
+                    <div class="row">
+                        <div class="col s12">
+                            <img src="https://ofhsmath.com/online_forms/images/banner.png" alt="" class="responsive-img">
+                        </div>
+                    </div>
+                </header>
+                <div class="row" style="margin-left: 30px; margin-right: 30px;">
+                    <form id="myForm" class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">date_range</i>
+                                <input type="text" name="submissionID" id="submissionID" value="<?= info.submissionID ?>" readonly>
+                                <label for="submissionID">Submission ID</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix"></i>
+                                <input type="text" name="submitDate" id="submitDate" value="<?= info.submitDate.toDateString() ?>" readonly>
+                                <label for="submitDate">Submission Date</label>
+                            </div>
+                            <div><input type="hidden" id="timestamp" name="timestamp" value="<?= info.timestamp ?>"></div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">person</i>
+                                <input type="text" name="lastName" id="lastName" value="<?= info.lastName ?>" readonly>
+                                <label for="lastName">Last Name</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix"></i>
+                                <input type="text" name="firstName" id="firstName" value="<?= info.firstName ?>" readonly>
+                                <label for="firstName">First Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">business</i>
+                                <input type="text" name="building" id="building" value="<?= info.building ?>" readonly>
+                                <label for="building">Building</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix"></i>
+                                <input type="text" id="assignment" name="assignment" value="<?= info.assignment ?>" readonly>
+                                <label for="assignment">Assignment/Job Title</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">email</i>
+                                <input type="email" id="email" name="email" value="<?= info.email ?>" readonly>
+                                <label for="email">Your Email</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">phone</i>
+                                <input type="text" id="phone" name="phone" value="<?= info.phone ?>" readonly>
+                                <label for="phone">Phone Extension</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">info</i>
+                                <input type="text" id="meetingInfo" name="meetingInfo" value="<?= info.meetingInfo ?>" readonly>
+                                <label for="meetingInfo">Name/Type of Meeting</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m3">
+                                <i class="material-icons prefix"></i>
+                                <input type="text" class="datepicker" id="startDate" name="startDate" value="<?= info.startDate.toDateString() ?>" readonly>
+                                <label for="startDate">Start Date</label>
+                            </div>
+                            <div class="input-field col s12 m3">
+                                <i class="material-icons prefix"></i>
+                                <input type="text" class="datepicker" id="endDate" name="endDate" value="<?= info.endDate.toDateString() ?>" readonly>
+                                <label for="endDate">End Date</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix"></i>
+                                <input type="text" id="meetingLocation" name="meetingLocation" value="<?= info.meetingLocation ?>" readonly>
+                                <label for="meetingLocation">Location</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix"></i>
+                                <input type="text" id="subNeeded" name="subNeeded" value="<?= info.subNeeded ?>" readonly>
+                                <label for="subNeeded">Substitute Needed</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix"></i>
+                                <input type="text" id="subDays" name="subDays" value="<?= info.subDays ?>" readonly>
+                                <label for="subDays"># Days</label>
+                            </div>
+                        </div>
+
+                        <div class="grey lighten-3" id="costs">
+                            <div class="row">
+                              <div class="input-field col s4 offset-s1">
+                                <h5>Estimated Costs</h5>
+                              </div>
+                              <div class="input-field col s4 offset-s2">
+                                <h5>Actual Costs</h5>
+                              </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s4 offset-s4">
+                                    <div><input type="hidden" id="drivingInfo" name="drivingInfo" value="<?= info.drivingInfo ?>"></div>
+                                    <div id="drivingInfo" name="drivingInfo"><a href="<?= info.drivingInfo ?>" target="_blank">Link to Google Directions</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div><input type="hidden" id="mileage" name="mileage" value="<?= info.mileage ?>"></div>
+                            <div class="row">
+                              <div class="input-field col s4 offset-s1">
+                                <input type="text" id="mileageCost" name="mileageCost" value="<?= info.mileageCost ? "$" + info.mileageCost.toFixed(2) : "$0.00" ?>" readonly>
+                                <label for="mileageTotal">Estimated Mileage</label>
+                              </div>
+                              <div class="input-field col s4 offset-s2">
+                                <input type="number" id="actMileageCost" name="actMileageCost" placeholder="0.00" step="0.01">
+                                <label for="actMileageCost">Actual Mileage Cost</label>
+                              </div>
+                            </div>
+                            <div><input type="hidden" id="registration" name="registration" value="<?= info.registration ?>"></div>
+                            <div class="row">
+                              <div class="input-field col s4 offset-s1">
+                                <input type="text" id="registrationCost" name="registrationCost" value="<?= info.registrationCost ? "$" + info.registrationCost.toFixed(2) : "$0.00" ?>" readonly>
+                                <label for="registrationCost">Estimated Registration</label>
+                              </div>
+                              <div class="input-field col s4 offset-s2">
+                                <input type="number" id="actRegistrationCost" name="actRegistrationCost" placeholder="0.00" step="0.01">
+                                <label for="actRegistrationCost">Actual Registration</label>
+                              </div>
+                            </div>
+                            <div><input type="hidden" id="parking" name="parking" value="<?= info.parking ?>"></div>
+                            <div class="row">
+                              <div class="input-field col s4 offset-s1">
+                                <input type="text" id="parkingCost" name="parkingCost" value="<?= info.parkingCost ? "$" + info.parkingCost.toFixed(2) : "$0.00" ?>" readonly>
+                                <label for="parkingCost">Estimated Parking/Tolls</label>
+                              </div>
+                              <div class="input-field col s4 offset-s2">
+                                <input type="number" id="actParkingCost" name="actParkingCost" placeholder="0.00" step="0.01">
+                                <label for="actParkingCost">Actual Parking/Tolls</label>
+                              </div>
+                            </div>
+                            <div><input type="hidden" id="foodDays" name="foodDays" value="<?= info.foodDays ?>"></div>
+                            <div class="row">
+                              <div class="input-field col s4 offset-s1">
+                                <input type="text" id="foodCost" name="foodCost" value="<?= info.foodCost ? "$" + info.foodCost.toFixed(2) : "$0.00" ?>" readonly>
+                                <label for="foodCost">Estimated Food</label>
+                              </div>
+                              <div class="input-field col s4 offset-s2">
+                                <input type="number" id="actFoodCost" name="actFoodCost" placeholder="0.00" step="0.01">
+                                <label for="actFoodCost">Actual Food</label>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="input-field col s4 offset-s1">
+                                <input type="text" id="totalCost" name="totalCost" value="<?= info.totalCost ? "$" + info.totalCost.toFixed(2) : "$0.00" ?>" readonly>
+                                <label for="totalCost">Estimated Total Cost</label>
+                              </div>
+                              <div class="input-field col s4 offset-s2">
+                                <input type="text" id="actTotalCost" name="actTotalCost" placeholder="$0.00" disabled>
+                                <label for="actTotalCost">Actual Total Cost</label>
+                              </div>
+                            </div>
+                        </div> <!--End of grey box-->
+                        <div class="row"></div>
+                        <div class="row" style="margin-bottom: 0px;">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">comment</i>
+                                <textarea id="adminComments" name="adminComments" class="materialize-textarea" readonly><?= info.adminComments ?></textarea>
+                                <label for="adminComments">Building Administrator Comments.</label>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 0px;">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">comment</i>
+                                <textarea id="districtComments" name="districtComments" class="materialize-textarea" readonly><?= info.districtComments ?></textarea>
+                                <label for="districtComments">District Administrator Comments.</label>
+                            </div>
+                        </div>
+                        <div class="row teal lighten-5" style="padding-top: 20px; margin-left: -30px; margin-right: -30px;">
+                        <div class="row" style="margin-left: 30px; margin-right: 30px;">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">edit</i>
+                                <input type="text" id="signature" name="signature" required>
+                                <label for="signature">Digital Signature</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix"></i>
+                                <input type="text" id="postSignDate" name="postSignDate" value="_" readonly>
+                                <label for="postSignDate">Date</label>
+                            </div>
+                        </div>
+                        <div><input type="hidden" id="route" name="route" value="<?= info.route ?>"></div>
+                        <div class="row" style="margin-left: 30px; margin-right: 30px;">
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">info</i>
+                                <input type="text" id="POnumber" name="POnumber" required>
+                                <label for="POnumber">Purchase Order Number</label>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-left: 30px; margin-right: 30px;">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">comment</i>
+                                <textarea id="postComments" name="postComments" class="materialize-textarea"></textarea>
+                                <label for="postComments">Final Submission Comments</label>
+                            </div>
+                        </div>
+                        <div class="row file-field input-field" style="margin-left: 30px; margin-right: 30px;">
+                            <div class="btn">
+                              <span>File</span>
+                              <input name="myFiles" id="myFiles" type="file" multiple>
+                            </div>
+                            <div class="file-path-wrapper">
+                              <input name="myFiles2" id="myFiles2" class="file-path validate" type="text" placeholder="Upload one or more files">
+                            </div>
+                        </div>
+                        </div>
+                        <div><input type="hidden" id="signDate" name="signDate" value="<?= info.signDate ?>"></div>
+                        <div><input type="hidden" id="districtSignature" name="districtSignature" value="<?= info.districtSignature ?>"></div>
+                        <div><input type="hidden" id="signDateDistrict" name="signDateDistrict" value="<?= info.signDateDistrict ?>"></div>
+                        <div><input type="hidden" id="signDateBuild" name="signDateBuild" value="<?= info.signDateBuild ?>"></div>
+                        <div id="output"></div>
+                        <div class="row" style="margin-bottom: 0px;">
+                            <div class="input-field center">
+                              <button class="indigo waves-effect waves-light btn submit-btn" id="btnSubmit" type="submit">Final Submission
+                                <i class="material-icons right">send</i>
+                              </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> <!--End of Container-->
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+        <script>
+            var numUploads = {};
+            numUploads.done = 0;
+            numUploads.total = 0;
+
+            // Upload the files into a folder in drive
+            // This is set to send them all to one folder (specificed in the .gs file)
+            function uploadFiles() {
+                var allFiles = document.getElementById('myFiles').files;
+                var lName = document.getElementById('lastName').value;
+                var nDate = document.getElementById('startDate').value;
+                var sNum = document.getElementById('submissionID').value;
+                var fixedDate = nDate.replace(/\,/g,"");
+                //console.log(fixedDate);
+                var folderName = lName + ' ' + sNum + ' '+ fixedDate + ' Professional Reimbursement Receipts';
+                
+                if (allFiles.length == 0) {
+                    sendData();
+                    console.log('No file selected!');
+                } else {
+                    numUploads.total = allFiles.length;
+                    google.script.run.withSuccessHandler(function(r) {
+                        // send files after the folder is created...
+                        for (var i = 0; i < allFiles.length; i++) {
+                            // Send each file at a time
+                            uploadFile(allFiles[i], r.folderId);
+                        }
+                    }).createFolder(folderName);
+                }
+            }
+            function uploadFile(file, folderId) {
+                console.log("The path: "+folderId);
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                var content = reader.result;
+                document.getElementById('output').innerHTML = 'uploading ' + file.name + '...';			
+                google.script.run.withSuccessHandler(onFileUploaded)
+                    .uploadFile(content, file.name, folderId);
+                }
+                reader.readAsDataURL(file);
+            }
+            function onFileUploaded(r) {
+                numUploads.done++;
+                document.getElementById('output').innerHTML = 'uploaded '
+                + r.fileName + ' (' + numUploads.done + '/'
+                + numUploads.total + ' files).';
+                if (numUploads.done == numUploads.total) {
+                    document.getElementById('output').innerHTML = 'Upload complete. '
+                        + numUploads.total + ' file(s) uploaded. ';
+                    numUploads.done = 0;
+                
+                    sendData();
+                }
+            }
+            function sendData() {   
+        
+                const form = document.getElementById('myForm');
+                //console.log(form.elements);
+                const data = formToJSON(form.elements);
+                console.log(data);
+                
+                var dataToSend = JSON.stringify(data, null, "  ");
+                    
+                google.script.run
+                    .withSuccessHandler (onSuccess)
+                    .withFailureHandler (onFailure)
+                    .withUserObject(this)
+                    .submit(dataToSend, "Pending Final");
+            }
+
+            function submitForm(e) {   
+                document.getElementById('btnSubmit').disabled=true;
+                uploadFiles();
+            }
+
+            function onSuccess() {
+                var div = document.getElementById('output');
+                div.innerHTML = 'Form submission completed.';
+            }
+            function onFailure() {
+                var div = document.getElementById('output');
+                div.innerHTML = 'Something went wrong!';
+            }
+
+            const formToJSON = (elements) => [].reduce.call(elements, (data, element) => {
+                // Make sure the element has the required properties.
+                
+                if (isValidElement(element) && isValidValue(element)) {
+                    if (isCheckbox(element)) {
+                        data[element.name] = (data[element.name] || []).concat(element.value);
+                    } else {
+                        data[element.name] = element.value;
+                    }
+                }
+
+                return data;
+            }, {});
+
+            const isValidElement = element => {
+                return element.name;
+            };
+            const isValidValue = element => {
+                return (!['checkbox', 'radio'].includes(element.type) || element.checked);
+            };
+            const isCheckbox = element => element.type === 'checkbox';
+            const isSelect = element => element.type === 'select';
+            const getSelectValues = options => [].reduce.call(options, (values, option) => {
+                return option.selected ? values.concat(option.value) : values;
+            }, []);
+
+            $(document).ready(function(){
+                $('#signDateBuild').val(getCurrentDate());
+                $('#postSignDate').val(getCurrentDate());
+                $("#myForm").validate({
+                    errorElement: 'div',
+                    errorPlacement: function (error, element) {
+                        var placement = $(element).data('error');
+                        if (placement) {
+                            $(placement).append(error);
+                        } else {
+                            error.insertAfter(element).css({"color": "red", "font-size": "0.9em", "text-align": "center"});
+                        }
+                    },
+                    rules: {
+                        'postSignDate': { // Change this to #endDate when testing
+                            greaterThan: "#endDate"  
+                        }
+                    },
+                    messages: {
+                        'signature': "Digital signature required",
+                        'postSignDate': "Cannot submit until after event.",
+                    },
+                    submitHandler: function(form, event) { 
+                        event.preventDefault();
+                        submitForm(event);
+                    }
+                });
+                $.validator.addMethod("greaterThan", 
+                   function(value, element, params) {
+                      if (!/Invalid|NaN/.test(new Date(value))) {
+                         return new Date(value) >= new Date($(params).val());
+                      }
+                      return isNaN(value) && isNaN($(params).val()) || (Number(value) >= Number($(params).val())); 
+                   },'Must be greater than {0}.');
+            });
+
+            $("input[id='actMileageCost']").on("change", function(){
+                calculateCosts();
+            });
+            $("input[id='actRegistrationCost']").on("change", function(){
+                calculateCosts();
+            });
+            $("input[id='actParkingCost']").on("change", function(){
+                calculateCosts();
+            });
+            $("input[id='actFoodCost']").on("change", function(){
+                calculateCosts();
+            });
+
+            function calculateCosts() {
+                var mileage = Number($('#actMileageCost').val());
+                var registration = Number($('#actRegistrationCost').val());
+                var parking = Number($('#actParkingCost').val());
+                var food = Number($('#actFoodCost').val());
+
+                document.getElementById('actTotalCost').value = "$" + (mileage + registration + parking + food).toFixed(2);
+            }
+
+            function getCurrentDate(){
+                today_date = new Date();
+                today_Date_Str = ((today_date.getMonth() < 9) ? "0" : "") + String(today_date.getMonth() + 1)+ "-" + ((today_date.getDate() < 10) ? "0" : "") + String(today_date.getDate()) + "-" +today_date.getFullYear();
+                return today_Date_Str;
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,462 @@
+<html lang="en">
+    <head>
+        <title>OFCS Professional Reimbursement Form</title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+        <style>
+            .card-panel {
+                border-radius: 10px;
+            }
+            .header {
+                margin-left: -25px;
+                margin-right: -25px;
+                margin-top: -25px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                padding: 0px 30px;
+            }
+            .radbut {
+                display: inline;
+            }
+            .row .col{
+                padding: 0px !important;
+                margin-bottom: 0px !important;
+                margin-top: 0px !important;
+            }
+            #subDays {
+                margin-top: -10px;
+            }
+            #subDaysLabel {
+                margin-top: -5px;
+            }
+            div.error .select-wrapper label.invalid{
+                color: red;
+                margin-top: -15px;
+                padding: 0;
+                font-size: 0.9em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="card-panel z-depth-5">
+                <header class="header indigo darken-3 white-text">
+                    <div class="row">
+                        <div class="col s12">
+                            <img src="https://ofhsmath.com/online_forms/images/banner.png" alt="" class="responsive-img">
+                        </div>
+                    </div>
+                </header>
+                <div class="row">
+                    <form id="myForm" class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">person</i>
+                                <input type="text" name="lastName" id="lastName" required>
+                                <label for="lastName">Last Name</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix"></i>
+                                <input type="text" name="firstName" id="firstName" required>
+                                <label for="firstName">First Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">business</i>
+                                <select id="building" name="building" required>
+                                    <option disabled selected value>Choose your option</option>
+                                    <option value="HS">High School</option>
+                                    <option value="MS">Middle School</option>
+                                    <option value="OFIS">Intermediate School</option>
+                                    <option value="FL">Falls-Lenox</option>
+                                    <option value="ECC">Early Childhood Center</option>
+                                    <option value="BUS">Bus Garage</option>
+                                    <option value="BOE">Board of Ed (other)</option>
+                                </select>
+                                <label>Building</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix"></i>
+                                <input type="text" id="assignment" name="assignment">
+                                <label for="assignment">Assignment/Job Title</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">email</i>
+                                <input type="email" id="email" name="email" required>
+                                <label for="email">Your Email</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">phone</i>
+                                <input type="text" id="phone" name="phone" required>
+                                <label for="phone">Phone Extension</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">info</i>
+                                <input type="text" id="meetingInfo" name="meetingInfo" required>
+                                <label for="meetingInfo">Name/Type of Meeting</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m3">
+                                <i class="material-icons prefix"></i>
+                                <input type="text" class="datepicker" id="startDate" name="startDate" required>
+                                <label for="startDate">Start Date</label>
+                            </div>
+                            <div class="input-field col s12 m3">
+                                <i class="material-icons prefix"></i>
+                                <input type="text" class="datepicker" id="endDate" name="endDate" required>
+                                <label for="endDate">End Date</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix"></i>
+                                <input type="text" id="meetingLocation" name="meetingLocation" required>
+                                <label for="meetingLocation">Location</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 offset-s1">
+                                <span>Substitute Needed</span>
+                            </div>
+                            <div class="input-field">
+                                
+                                <div class="col offset-s1">
+                                    <label>
+                                        <input type="radio" value="No" name="subNeeded" checked>
+                                        <span style="padding-right:10px;">No</span>
+                                    </label>
+                                </div>  
+                                <div class="col">
+                                    <label>
+                                        <input type="radio" value="Yes" name="subNeeded">
+                                        <span style="padding-right:20px;">Yes</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="input-field col s2">
+                                <input type="number" id="subDays" step="0.5" min="0" name="subDays">
+                                <label for="subDays" id="subDaysLabel"># Days</label>
+                            </div> 
+                        </div>
+                        <div class="grey lighten-3" id="costs">
+                            <h5 style="padding-top:10px; padding-left:10px;">Estimated Costs</h5>
+                            <div class="row">
+                                <div class="input-field col s4 offset-s1">
+                                    <a href="https://www.google.com/maps/dir///@41.3711828,-81.9338464,16z/data=!4m2!4m1!3e0" class="btn blue" target="_blank">Get Directions</a>
+                                </div>
+                                <div class="input-field col s5">
+                                    <input type="text" id="drivingInfo" name="drivingInfo">
+                                    <label for="drivingInfo">Google Maps Web Address</label>
+                                </div>
+                                <a href="#direxplain" class="modal-trigger">Need Help?</a>
+                                <div class="modal" id="direxplain">
+                                    <div class="modal-content">
+                                        <div class="row">
+                                            <div class="col s7">
+                                                <h4>Getting the Google Maps Link</h4>
+                                            </div>
+                                            <div class="col s2 offset-s3">
+                                                <a href="#!" class="modal-close btn blue">Close</a>
+                                            </div>
+                                        </div>
+                                   
+                                        <span style="color:red;font-size:85%;font-style:italic">
+                                        <p>For mileage, click on the "Get Directions" link. This will open Google Maps in another window. Enter the 
+                                        addresses of your starting location and destination into Google Maps. Click on preferred route to generate 
+                                        the one-way driving direction. Once 
+                                        your directions are generated, click the "Share" icon, click "Copy Link" to copy address, and paste into 
+                                        the textbox for "Google Maps Web Address". Total mileage cost includes two-way mileage.</p>
+                                        </span>
+                                        <video class="responsive-video" controls>
+                                            <source src="https://ofhsmath.com/online_forms/GetDirections.mp4" type="video/mp4">
+                                        </video>
+                                    </div> 
+                                </div> <!--End of Modal-->
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s4 offset-s1">
+                                    <input type="number" id="mileage" name="mileage">
+                                    <label for="mileage">Total Miles (2-way)</label>
+                                </div>
+                                <div class="input-field col s4 offset-s2">
+                                    <input type="text" id="mileageCost" name="mileageCost" placeholder="$0.00" disabled>
+                                    <label for="mileageCost">Mileage Cost</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s4 offset-s1">
+                                    <input type="number" id="registration" name="registration" step="0.01">
+                                    <label for="registration">Registration Cost</label>
+                                </div>
+                                <div class="input-field col s4 offset-s2">
+                                    <input type="text" id="registrationCost" name="registrationCost" placeholder="$0.00" disabled>
+                                    <label for="registrationCost">Registration Cost</label>
+                                </div>
+                                <div>
+                                    <div class="col s10 offset-s1">
+                                        <label><em>Conference registration fee - only list if initially paying out of pocket and personal reimbursement is needed.</em></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s4 offset-s1">
+                                    <input type="number" id="parking" name="parking" step="0.01">
+                                    <label for="parking">Parking Cost/Tolls</label>
+                                </div>
+                                <div class="input-field col s4 offset-s2">
+                                    <input type="text" id="parkingCost" name="parkingCost" placeholder="$0.00" disabled>
+                                    <label for="parkingCost">Parking Cost/Tolls</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s10 offset-s1">
+                                    <label for="lodging"><em>Hotel - a reservation hold may be put on a personal credit card, but the cost is changed to a district payment prior to any charges so no reimbursement is needed.</em></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s2 offset-s1">
+                                    <input type="number" id="foodDays" name="foodDays" step="1">
+                                    <label for="foodDays">Food Days</label>
+                                </div>
+                                <div class="input-field col s4 offset-s4">
+                                    <input type="text" id="foodCost" name="foodCost" placeholder="$0.00" disabled>
+                                    <label for="foodCost">Max Food Reimbursement</label>
+                                </div>
+                            </div>
+                                
+                            <div class="row">
+                                <div class="input-field col s4 offset-s7">
+                                    <input type="text" id="totalCost" name="totalCost" value="$0.00" disabled>
+                                    <label for="totalCost">Total Cost</label>
+                                </div>
+                            </div>
+                        </div> <!--End of grey box-->
+                        <br>
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">edit</i>
+                                <input type="text" id="signature" name="signature" required>
+                                <label for="signature">Digital Signature</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix"></i>
+                                <input type="text" id="signDate" name="signDate" value="_" readonly>
+                                <label for="signDate">Date</label>
+                            </div>
+                        </div>
+                        <div id="output"></div>
+                        <div class="row" id="myButton">
+                            <div class="input-field center">
+                                <button class="indigo waves-effect waves-light btn submit-btn" id="btnSubmit" type="submit">Submit
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> <!--End of Container-->
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+        <script>
+            function submitForm(e) {   
+                document.getElementById('btnSubmit').disabled=true;
+        
+                const form = document.getElementById('myForm');
+                //console.log(form.elements);
+                const data = formToJSON(form.elements);
+                console.log(data);
+                
+                var dataToSend = JSON.stringify(data, null, "  ");
+                    
+                google.script.run
+                    .withSuccessHandler (onSuccess)
+                    .withFailureHandler (onFailure)
+                    .withUserObject(this)
+                    .submit(dataToSend, "Pending");
+            }
+            function onSuccess() {
+                var div = document.getElementById('output');
+                div.innerHTML = 'Form submission completed.';
+            }
+            function onFailure() {
+                var div = document.getElementById('output');
+                div.innerHTML = 'Something went wrong!';
+            }
+
+            const formToJSON = (elements) => [].reduce.call(elements, (data, element) => {
+                // Make sure the element has the required properties.
+                
+                if (isValidElement(element) && isValidValue(element)) {
+                    if (isCheckbox(element)) {
+                        data[element.name] = (data[element.name] || []).concat(element.value);
+                    } else {
+                        data[element.name] = element.value;
+                    }
+                }
+
+                return data;
+            }, {});
+
+            const isValidElement = element => {
+                return element.name;
+            };
+            const isValidValue = element => {
+                return (!['checkbox', 'radio'].includes(element.type) || element.checked);
+            };
+            const isCheckbox = element => element.type === 'checkbox';
+            const isSelect = element => element.type === 'select';
+            const getSelectValues = options => [].reduce.call(options, (values, option) => {
+                return option.selected ? values.concat(option.value) : values;
+            }, []);
+
+            $(document).ready(function(){
+                $('select').formSelect();
+                //$('.datepicker').datepicker();
+                $('#startDate').datepicker().datepicker('setDate', new Date());
+                $('.modal').modal();
+               
+                $('#signDate').val(getCurrentDate());
+            
+                $('select').on('change', function() {
+                    $(this).valid();  // triggers the validation test
+                });
+                
+                $('select[required]').css({
+                    display: 'inline',
+                    position: 'absolute',
+                    float: 'left',
+                    padding: 0,
+                    margin: 0,
+                    border: '1px solid rgba(255,255,255,0)',
+                    height: 0, 
+                    width: 0,
+                    top: '2em',
+                    left: '3em',
+                    opacity: 0,
+                    pointerEvents: 'none'
+                });
+                $("#myForm").validate({
+                    errorElement: 'div',
+                    errorPlacement: function (error, element) {
+                        var placement = $(element).data('error');
+                        if (placement) {
+                            $(placement).append(error);
+                        } else {
+                            error.insertAfter(element).css({"color": "red", "font-size": "0.9em", "text-align": "center"});
+                        }
+                    },
+                    rules: {
+                        'email': {
+                            required: true,
+                            email: true
+                        },
+                        'drivinginfo': {
+                            url:true
+                        },
+                        'endDate': { 
+                            greaterThan: "#startDate" 
+                        }
+                    },
+                    messages: {
+                        'email': {
+                            email: "Valid email required"
+                        },
+                        'drivinginfo': "Google Maps URL required",
+                        'signature': "Digital signature required",
+                        'endDate': "Must be start date or after",
+                    },
+                    submitHandler: function(form, event) { 
+                        event.preventDefault();
+                        submitForm(event);
+                    }
+                });
+                $.validator.setDefaults({
+                    highlight: function(element, errorClass, validClass) {
+                        if (element.tagName === 'SELECT')
+                        $(element).closest('.select-wrapper').addClass('invalid');
+                        else
+                        $(element).removeClass(validClass).addClass(errorClass);
+                    },
+                    unhighlight: function(element, errorClass, validClass) {
+                        if (element.tagName === 'SELECT')
+                        $(element).closest('.select-wrapper').removeClass('invalid');
+                        else
+                        $(element).removeClass(errorClass).addClass(validClass);
+                    },
+                    errorClass: "invalid form-error",
+                    validClass: "valid",
+                    
+                });
+                $.validator.addMethod("greaterThan", 
+                   function(value, element, params) {
+                      if (!/Invalid|NaN/.test(new Date(value))) {
+                         return new Date(value) >= new Date($(params).val());
+                      }
+                      return isNaN(value) && isNaN($(params).val()) || (Number(value) >= Number($(params).val())); 
+                   },'Must be greater than {0}.');
+            });
+
+            $("input[id='mileage']").on("change", function(){
+                calculateCosts();
+            });
+            $("input[id='registration']").on("change", function(){
+                calculateCosts();
+            });
+            $("input[id='parking']").on("change", function(){
+                calculateCosts();
+            });
+            $("input[id='foodDays']").on("change", function(){
+                calculateCosts();
+            });
+            
+            $('#startDate').on('change', function(event) {
+              
+                    console.log("Hey");
+                    var starting = new Date($('#startDate').val());  
+                    var ending = $('#endDate');
+           
+                    //minDate_Str = ((starting.getMonth() < 9) ? "0" : "") + String(starting.getMonth() + 1)+ "-" + ((starting.getDate() < 10) ? "0" : "") + String(starting.getDate()) + "-" +starting.getFullYear();
+                    //ending.val(minDate_Str);
+                    
+                    $('#endDate').datepicker({
+                        date: starting,
+                        defaultDate: starting,
+                        minDate: starting,
+                    }).datepicker('setDate', starting);
+                 
+            });
+            function calculateCosts() {
+                var perMile = <?!= perMile ?>;
+                var miles = Number($('#mileage').val());
+                var regCost = Number($('#registration').val());
+                var parkCost = Number($('#parking').val());
+                var foodDaysNum = Number($('#foodDays').val());
+                document.getElementById('mileageCost').value = "$" + (miles * perMile).toFixed(2);
+                document.getElementById('registrationCost').value = "$" + regCost.toFixed(2);
+                document.getElementById('parkingCost').value = "$" + parkCost.toFixed(2);
+                document.getElementById('foodCost').value = "$" + (foodDaysNum * 50).toFixed(2);
+                document.getElementById('totalCost').value = "$" + (miles * perMile + regCost + 
+                    parkCost + foodDaysNum*50).toFixed(2);
+            }
+            function getCurrentDate(){
+                today_date = new Date();
+                today_Date_Str = ((today_date.getMonth() < 9) ? "0" : "") + String(today_date.getMonth() + 1)+ "-" + ((today_date.getDate() < 10) ? "0" : "") + String(today_date.getDate()) + "-" +today_date.getFullYear();
+                return today_Date_Str;
+            }
+        </script>
+    </body>
+</html>
